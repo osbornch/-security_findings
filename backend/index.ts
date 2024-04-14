@@ -1,10 +1,12 @@
 const express = require('express');
+var cors = require('cors')
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = 3000; // Choose any port you prefer
 
 const db = new sqlite3.Database('../db/findings.db');
+app.use(cors())
 
 app.get('/api/v1/grouped_findings', (req, res) => {
     db.all("SELECT * FROM grouped_findings", (err, rows) => {
