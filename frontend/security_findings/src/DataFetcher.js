@@ -12,6 +12,7 @@ const DataFetcher = () => {
       setError(null);
 
       try {
+        // const response = await axios.get('https://dogapi.dog/api/v2/breeds');
         const response = await axios.get('http://localhost:3000/api/v1/grouped_findings');
         console.log('Data fetched successfully:', response.data);
         setData(response.data);
@@ -36,8 +37,8 @@ const DataFetcher = () => {
 
   return (
     <div>
-      {data.map((item) => (
-        <div key={item.id}>{item.name}</div>
+      { data.map((item) => (
+        <div key={item.id}>{item.grouping_key}</div>
       ))}
     </div>
   );
