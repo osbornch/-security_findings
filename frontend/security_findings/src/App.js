@@ -24,8 +24,8 @@ const App = () => {
   }, []);
 
   const tabs = [
-    { label: 'Counts by Severity', content: <PieChart width={400} height={400} data={data}/> },
-    { label: 'Raw findings', content: <ExpandableTable data={data} /> },
+    { label: 'Counts by Severity', content: <PieChart width={400} height={400} data={dummyData}/> },
+    { label: 'Raw findings', content: <ExpandableTable data={dummyData} /> },
   ];
 
   return (
