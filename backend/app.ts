@@ -30,6 +30,17 @@ app.get('/api/v1/raw_findings', (req, res) => {
    });
 });
 
+app.get('/api/v1/groupfindings_by_severity', (req, res) => {
+    db.all("SELECT severity, COUNT(id) as count FROM grouped_findings GROUP BY severity", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.json(rows);
+        }
+    });
+ });
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
