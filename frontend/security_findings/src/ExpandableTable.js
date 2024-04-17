@@ -13,9 +13,9 @@ const ExpandableTable = ({ data }) => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
+            <th>id</th>
+            <th>grouping_type</th>
+            <th>grouping_key</th>
           </tr>
         </thead>
         <tbody>
@@ -25,16 +25,17 @@ const ExpandableTable = ({ data }) => {
                 className={`expandable-row ${expandedRow === index ? 'expanded-details' : ''}`}
                 onClick={() => handleRowClick(index)}
               >
-                <td>{row.name}</td>
-                <td>{row.age}</td>
-                <td>{row.email}</td>
+                <td>{row.id}</td>
+                <td>{row.grouping_type}</td>
+                <td>{row.grouping_key}</td>
               </tr>
               {expandedRow === index && (
                 <tr className="details-container">
                   <td colSpan="3">
                     <div>
-                      <strong>Details:</strong>
-                      <div>{row.details}</div>
+                      <strong>raw_findings:</strong>
+                      <div>{row.raw_findings}
+                      </div>
                     </div>
                   </td>
                 </tr>
