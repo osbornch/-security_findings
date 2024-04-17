@@ -8,7 +8,7 @@ const port = 3000; // Choose any port you prefer
 const db = new sqlite3.Database('../db/findings.db');
 app.use(cors())
 
-app.get('/api/v1/grouped_findings', (req, res) => {
+app.get('/api/v1/groupedFindings', (req, res) => {
     db.all("SELECT * FROM grouped_findings", (err, rows) => {
         if (err) {
             console.error(err.message);
@@ -20,7 +20,7 @@ app.get('/api/v1/grouped_findings', (req, res) => {
 });
 
 
-app.get('/api/v1/raw_findings', (req, res) => {
+app.get('/api/v1/rawFindings', (req, res) => {
     db.all("SELECT * FROM raw_findings", (err, rows) => {
         if (err) {
             console.error(err.message);
@@ -31,7 +31,7 @@ app.get('/api/v1/raw_findings', (req, res) => {
     });
 });
 
-app.get('/api/v1/raw_findings', (req, res) => {
+app.get('/api/v1/rawFindings', (req, res) => {
    db.all("SELECT * FROM raw_findings", (err, rows) => {
        if (err) {
            console.error(err.message);
@@ -42,7 +42,7 @@ app.get('/api/v1/raw_findings', (req, res) => {
    });
 });
 
-app.get('/api/v1/groupfindings_by_severity', (req, res) => {
+app.get('/api/v1/groupFindingsBySeverity', (req, res) => {
     db.all("SELECT severity, COUNT(id) as count FROM grouped_findings GROUP BY severity", (err, rows) => {
         if (err) {
             console.error(err.message);
@@ -53,8 +53,8 @@ app.get('/api/v1/groupfindings_by_severity', (req, res) => {
     });
  });
 
- app.get('/api/v1/groupfindings_with_rawfindings', (req, res) => {
-    db.all("SELECT grouped_findings.id, JSON_GROUP_ARRAY(JSON_OBJECT('raw_id', raw_findings.id, 'source_security_tool_name', raw_findings.source_security_tool_name)) AS raw_findings FROM grouped_findings LEFT JOIN raw_findings ON grouped_findings.id = raw_findings.grouped_finding_id GROUP BY grouped_findings.id", (err, rows) => {
+ app.get('/api/v1/groupFindingsWithRawFindings', (req, res) => {
+    db.all("SELECT *, JSON_GROUP_ARRAY(JSON_OBJECT('raw_id', raw_findings.id, 'source_security_tool_name', raw_findings.source_security_tool_name)) AS raw_findings FROM grouped_findings LEFT JOIN raw_findings ON grouped_findings.id = raw_findings.grouped_finding_id GROUP BY grouped_findings.id", (err, rows) => {
         if (err) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');
