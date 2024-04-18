@@ -54,7 +54,7 @@ app.get('/api/v1/groupFindingsBySeverity', (req, res) => {
  });
 
  app.get('/api/v1/groupFindingsWithRawFindings', (req, res) => {
-    db.all("SELECT *, JSON_GROUP_ARRAY(JSON_OBJECT('raw_id', raw_findings.id, 'source_security_tool_name', raw_findings.source_security_tool_name)) AS raw_findings FROM grouped_findings LEFT JOIN raw_findings ON grouped_findings.id = raw_findings.grouped_finding_id GROUP BY grouped_findings.id", (err, rows) => {
+    db.all("SELECT grouped_findings.*, JSON_GROUP_ARRAY(JSON_OBJECT('raw_id', raw_findings.id, 'source_security_tool_name', raw_findings.source_security_tool_name)) AS raw_findings FROM grouped_findings LEFT JOIN raw_findings ON grouped_findings.id = raw_findings.grouped_finding_id GROUP BY grouped_findings.id", (err, rows) => {
         if (err) {
             console.error(err.message);
             res.status(500).send('Internal Server Error');

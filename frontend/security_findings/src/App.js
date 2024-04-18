@@ -31,12 +31,30 @@ const App = () => {
         "id": 1,
         "grouping_type": "remediation",
         "grouping_key": "https://docs.aws.amazon.com/console/securityhub/Lambda.1/remediation",
+        "severity": "low",
+        "grouped_finding_created": "2022-03-05 15:25:23.341094",
+        "sla": "2022-04-04 15:25:23.341094",
+        "description": "Remediation Group: https://docs.aws.amazon.com/console/securityhub/Lambda.1/remediation",
+        "security_analyst": "Ron",
+        "owner": "Royce",
+        "workflow": "Default Workflow",
+        "status": "in_progress",
+        "progress": 0.0170203141537383,
         "raw_findings": "[{\"raw_id\":1,\"source_security_tool_name\":\"AWS Security Hub\"}]"
       },
       {
         "id": 2,
         "grouping_type": "remediation",
         "grouping_key": "https://docs.aws.amazon.com/console/securityhub/PCI.EC2.5/remediation",
+        "severity": "high",
+        "grouped_finding_created": "2022-03-05 15:25:55.377483",
+        "sla": "2022-04-04 15:25:55.377483",
+        "description": "Remediation Group: https://docs.aws.amazon.com/console/securityhub/PCI.EC2.5/remediation",
+        "security_analyst": "Bob",
+        "owner": "Wei",
+        "workflow": "Default Workflow",
+        "status": "in_progress",
+        "progress": 0.439392480037174,
         "raw_findings": "[{\"raw_id\":2,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":16,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":31,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":258,\"source_security_tool_name\":\"AWS Security Hub\"}]"
       },
   ];
@@ -48,8 +66,8 @@ const App = () => {
       const result = await fetchData(); // Call fetchData function
       setData(result); // Update state with fetched data
     };
-
     fetchDataFromAPI(); // Invoke data fetching function
+    console.log("fetching data in app => " + data );
   }, []);
 
   const tabs = [
