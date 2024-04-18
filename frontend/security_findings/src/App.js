@@ -25,40 +25,6 @@ const App = () => {
     }
   ];
 
-  const groupfindings_with_raw_data = 
-    [
-      {
-        "id": 1,
-        "grouping_type": "remediation",
-        "grouping_key": "https://docs.aws.amazon.com/console/securityhub/Lambda.1/remediation",
-        "severity": "low",
-        "grouped_finding_created": "2022-03-05 15:25:23.341094",
-        "sla": "2022-04-04 15:25:23.341094",
-        "description": "Remediation Group: https://docs.aws.amazon.com/console/securityhub/Lambda.1/remediation",
-        "security_analyst": "Ron",
-        "owner": "Royce",
-        "workflow": "Default Workflow",
-        "status": "in_progress",
-        "progress": 0.0170203141537383,
-        "raw_findings": "[{\"raw_id\":1,\"source_security_tool_name\":\"AWS Security Hub\"}]"
-      },
-      {
-        "id": 2,
-        "grouping_type": "remediation",
-        "grouping_key": "https://docs.aws.amazon.com/console/securityhub/PCI.EC2.5/remediation",
-        "severity": "high",
-        "grouped_finding_created": "2022-03-05 15:25:55.377483",
-        "sla": "2022-04-04 15:25:55.377483",
-        "description": "Remediation Group: https://docs.aws.amazon.com/console/securityhub/PCI.EC2.5/remediation",
-        "security_analyst": "Bob",
-        "owner": "Wei",
-        "workflow": "Default Workflow",
-        "status": "in_progress",
-        "progress": 0.439392480037174,
-        "raw_findings": "[{\"raw_id\":2,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":16,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":31,\"source_security_tool_name\":\"AWS Security Hub\"},{\"raw_id\":258,\"source_security_tool_name\":\"AWS Security Hub\"}]"
-      },
-  ];
-
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -68,11 +34,11 @@ const App = () => {
     };
     fetchDataFromAPI(); // Invoke data fetching function
     console.log("fetching data in app => " + data );
-  }, []);
+  });
 
   const tabs = [
-    { label: 'Counts by Severity', content: <PieChart width={400} height={400} data={dummyData}/> },
-    { label: 'Raw findings', content: <ExpandableTable data={groupfindings_with_raw_data} /> },
+    { label: 'Counts by Severity', content: <PieChart width={800} height={800} data={dummyData}/> },
+    { label: 'Raw findings', content: <ExpandableTable data={data} /> },
   ];
 
   return (
