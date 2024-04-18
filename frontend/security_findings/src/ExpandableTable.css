@@ -1,12 +1,12 @@
 .table-container {
   overflow-x: auto;
   max-width: 100%;
-  min-width: 600px; /* Example minimum width */
-
   /* margin-bottom: 20px; */
 }
 
 .table {
+  align-content: left;
+  text-align: left;
   width: auto; /* Or set a specific width */
   table-layout: auto; /* Or fixed, depending on your needs */
   border-collapse: collapse;

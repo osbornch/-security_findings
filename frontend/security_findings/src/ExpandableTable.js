@@ -9,7 +9,7 @@ const ExpandableTable = ({ data }) => {
   };
 
   return (
-    <div className="table-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: 1200 }}>
+    <div className="table-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <table>
         <thead>
           <tr>

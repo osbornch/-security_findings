@@ -25,20 +25,22 @@ const App = () => {
     }
   ];
 
-  const [data, setData] = useState(null);
+  const [countBySeverityData, setCountBySeverityData] = useState(null);
+  const [groupFindingsWithRawFindingsData, setGroupFindingsWithRawFindingsData] = useState(null);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
-      const result = await fetchData(); // Call fetchData function
-      setData(result); // Update state with fetched data
+      const countBySeverityDataResult = await fetchData('http://localhost:3000/api/v1/groupFindingsBySeverity'); // Call fetchData function
+      const groupFindingsWithRawFindingsDataResult = await fetchData('http://localhost:3000/api/v1/groupFindingsWithRawFindings'); // Call fetchData function
+      setCountBySeverityData(countBySeverityDataResult); // Update state with fetched data
+      setGroupFindingsWithRawFindingsData(groupFindingsWithRawFindingsDataResult); // Update state with fetched data
     };
     fetchDataFromAPI(); // Invoke data fetching function
-    console.log("fetching data in app => " + data );
-  });
+  },[]);
 
   const tabs = [
     { label: 'Counts by Severity', content: <PieChart width={800} height={800} data={dummyData}/> },
-    { label: 'Raw findings', content: <ExpandableTable data={data} /> },
+    { label: 'Raw findings', content: <ExpandableTable data={groupFindingsWithRawFindingsData} /> },
   ];
 
   return (
