@@ -5,33 +5,12 @@ import PieChart from './PieChart';
 import Tabs from './Tabs';
 
 const App = () => {
-  const dummyData = 
-  [
-    {
-      "severity": "critical",
-      "count": 4
-    },
-    {
-      "severity": "high",
-      "count": 13
-    },
-    {
-      "severity": "low",
-      "count": 173
-    },
-    {
-      "severity": "medium",
-      "count": 25
-    }
-  ];
-
   const [countBySeverityData, setCountBySeverityData] = useState(null);
   const [groupFindingsWithRawFindingsData, setGroupFindingsWithRawFindingsData] = useState(null);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
-      const countBySeverityDataResult = await fetchData('http://localhost:3000/api/v1/groupFindingsBySeverity'); // Call fetchData function
-      const groupFindingsWithRawFindingsDataResult = await fetchData('http://localhost:3000/api/v1/groupFindingsWithRawFindings'); // Call fetchData function
+      const [countBySeverityDataResult,groupFindingsWithRawFindingsDataResult] = await fetchData(); // Call fetchData function
       setCountBySeverityData(countBySeverityDataResult); // Update state with fetched data
       setGroupFindingsWithRawFindingsData(groupFindingsWithRawFindingsDataResult); // Update state with fetched data
     };
@@ -39,7 +18,7 @@ const App = () => {
   },[]);
 
   const tabs = [
-    { label: 'Counts by Severity', content: <PieChart width={800} height={800} data={dummyData}/> },
+    { label: 'Counts by Severity', content: <PieChart width={800} height={800} data={countBySeverityData}/> },
     { label: 'Raw findings', content: <ExpandableTable data={groupFindingsWithRawFindingsData} /> },
   ];
 

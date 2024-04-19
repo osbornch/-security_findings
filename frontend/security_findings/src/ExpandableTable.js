@@ -28,13 +28,13 @@ const ExpandableTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
+          {data &&data.map((row, index) => (
             <React.Fragment key={index}>
               <tr
                 className={`expandable-row ${expandedRow === index ? 'expanded-details' : ''}`}
                 onClick={() => handleRowClick(index)}
               >
-                <td>{row.id}</td>
+                <td className='td_main'>{row.id}</td>
                 <td>{row.grouping_type}</td>
                 <td>{row.grouping_key}</td>
                 <td>{row.severity}</td>
@@ -52,7 +52,7 @@ const ExpandableTable = ({ data }) => {
                   <td colSpan="3">
                     <div>
                       <strong>raw_findings:</strong>
-                      <div>{row.raw_findings}
+                      <div>{JSON.stringify(row.raw_findings)}
                       </div>
                     </div>
                   </td>

@@ -1,13 +1,14 @@
 .table-container {
   overflow-x: auto;
   max-width: 100%;
+  table-layout: auto;
   /* margin-bottom: 20px; */
 }
 
 .table {
   align-content: left;
   text-align: left;
-  width: auto; /* Or set a specific width */
+  width: 100%; /* Or set a specific width */
   table-layout: auto; /* Or fixed, depending on your needs */
   border-collapse: collapse;
 }
@@ -15,6 +16,13 @@
 th, td {
   padding: 2px;
   border: 1px solid #ddd;
+}
+
+.td_main {
+  max-width: 200px; /* Example max-width */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 th {
