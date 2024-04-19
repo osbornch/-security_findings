@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ExpandableTable.css';
 
+var JSONPretty = require('react-json-pretty');
 const ExpandableTable = ({ data }) => {
   const [expandedRow, setExpandedRow] = useState(null);
 
@@ -34,7 +35,7 @@ const ExpandableTable = ({ data }) => {
                 className={`expandable-row ${expandedRow === index ? 'expanded-details' : ''}`}
                 onClick={() => handleRowClick(index)}
               >
-                <td className='td_main'>{row.id}</td>
+                <td>{row.id}</td>
                 <td>{row.grouping_type}</td>
                 <td>{row.grouping_key}</td>
                 <td>{row.severity}</td>
@@ -49,11 +50,10 @@ const ExpandableTable = ({ data }) => {
               </tr>
               {expandedRow === index && (
                 <tr className="details-container">
-                  <td colSpan="3">
+                  <td colSpan="8">
                     <div>
                       <strong>raw_findings:</strong>
-                      <div>{JSON.stringify(row.raw_findings)}
-                      </div>
+                      <JSONPretty id="json-pretty" data={row.raw_findings}></JSONPretty>
                     </div>
                   </td>
                 </tr>

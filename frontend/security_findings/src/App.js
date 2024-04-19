@@ -10,16 +10,16 @@ const App = () => {
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
-      const [countBySeverityDataResult,groupFindingsWithRawFindingsDataResult] = await fetchData(); // Call fetchData function
-      setCountBySeverityData(countBySeverityDataResult); // Update state with fetched data
-      setGroupFindingsWithRawFindingsData(groupFindingsWithRawFindingsDataResult); // Update state with fetched data
+      const [countBySeverityDataResult,groupFindingsWithRawFindingsDataResult] = await fetchData(); 
+      setCountBySeverityData(countBySeverityDataResult); 
+      setGroupFindingsWithRawFindingsData(groupFindingsWithRawFindingsDataResult); 
     };
-    fetchDataFromAPI(); // Invoke data fetching function
+    fetchDataFromAPI(); 
   },[]);
 
   const tabs = [
     { label: 'Counts by Severity', content: <PieChart width={800} height={800} data={countBySeverityData}/> },
-    { label: 'Raw findings', content: <ExpandableTable data={groupFindingsWithRawFindingsData} /> },
+    { label: 'Group findings', content: <ExpandableTable data={groupFindingsWithRawFindingsData} /> },
   ];
 
   return (

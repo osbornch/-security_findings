@@ -2,6 +2,7 @@
   overflow-x: auto;
   max-width: 100%;
   table-layout: auto;
+  word-wrap: break-word;
   /* margin-bottom: 20px; */
 }
 
@@ -16,13 +17,14 @@
 th, td {
   padding: 2px;
   border: 1px solid #ddd;
+  word-wrap: break-word;
 }
 
-.td_main {
-  max-width: 200px; /* Example max-width */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+@media (max-width: 768px) {
+  td.big-column {
+    display: none; /* Example of hiding the column on smaller screens */
+  }
 }
 
 th {
@@ -44,4 +46,6 @@ tr.expanded-details {
 
 .details-container {
   padding: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
